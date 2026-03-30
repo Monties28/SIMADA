@@ -1,9 +1,5 @@
 <?php
-/*
- * pages/upload.php
- * Fragment — di-include oleh user/dashboard.php
- * JANGAN tambahkan session_start(), <!DOCTYPE>, <head>, <body>, sidebar di sini
- */
+
 ?>
 
 <div class="space-y-6">
