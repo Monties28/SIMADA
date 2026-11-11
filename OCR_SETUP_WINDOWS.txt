@@ -1,0 +1,38 @@
+SIMADA - SMART OCR WINDOWS/XAMPP
+=================================
+
+ALUR:
+1. PDF diupload.
+2. SIMADA mencoba pdftotext (cepat, untuk PDF digital).
+3. Jika hasil kosong, SIMADA memakai pdftoppm untuk membuat gambar per halaman.
+4. Tesseract membaca gambar tersebut.
+5. Jika OCR tetap gagal, upload dokumen TETAP berhasil dan admin bisa isi teks manual.
+
+KOMPONEN YANG DIPERLUKAN:
+- Poppler for Windows: pdftotext.exe dan pdftoppm.exe
+- Tesseract OCR: tesseract.exe
+- Bahasa Tesseract Indonesia (ind) direkomendasikan; eng dapat menjadi fallback.
+
+CONTOH KONFIGURASI .env:
+PDFTOTEXT_PATH=C:\tools\poppler\Library\bin\pdftotext.exe
+PDFTOPPM_PATH=C:\tools\poppler\Library\bin\pdftoppm.exe
+TESSERACT_PATH=C:\Program Files\Tesseract-OCR\tesseract.exe
+TESSERACT_LANG=ind+eng
+OCR_MAX_PAGES=30
+OCR_DPI=200
+
+Jika executable sudah ada di PATH Windows, tiga *_PATH boleh dibiarkan kosong.
+
+CEK SETELAH INSTALASI:
+Buka http://localhost/simada/setup_check.php
+Pastikan baris berikut OK:
+- PHP shell_exec
+- pdftotext (PDF digital)
+- pdftoppm (PDF scan)
+- Tesseract OCR
+
+CATATAN KINERJA:
+- pdftotext selalu dicoba lebih dahulu karena jauh lebih ringan.
+- Tesseract hanya dipakai jika PDF tidak memiliki teks.
+- OCR_MAX_PAGES membatasi jumlah halaman yang diproses sekali upload.
+- OCR_DPI=200 cukup seimbang untuk kualitas dan kecepatan pada PC lama.

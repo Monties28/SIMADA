@@ -1,0 +1,519 @@
+/* =========================================================
+   SIMADA THEME SYSTEM
+   Menyatukan kontras Light/Dark untuk seluruh utility Tailwind
+   yang dipakai halaman admin dan user tanpa mengubah fungsi PHP.
+========================================================= */
+
+:root,
+html[data-theme="light"] {
+    color-scheme: light;
+    --ui-bg: #f4faf9;
+    --ui-bg-soft: #f8fcfb;
+    --ui-surface: #ffffff;
+    --ui-surface-soft: #f5f9f8;
+    --ui-surface-muted: #eaf2f1;
+    --ui-text: #172c2b;
+    --ui-text-2: #455f5c;
+    --ui-muted: #667c79;
+    --ui-faint: #849794;
+    --ui-border: #dce8e6;
+    --ui-border-strong: #c7d9d6;
+    --ui-primary: #0f9d94;
+    --ui-primary-hover: #0b7f79;
+    --ui-primary-soft: #e8f7f5;
+    --ui-shadow: 0 12px 32px rgba(15, 45, 42, .07);
+    --ui-shadow-sm: 0 6px 18px rgba(15, 45, 42, .06);
+
+    /* Kompatibilitas variabel layout lama. */
+    --app-ink: var(--ui-text);
+    --app-muted: var(--ui-muted);
+    --app-bg: linear-gradient(180deg, #f7fbfa 0%, #f3f9f8 100%);
+    --sidebar-bg: linear-gradient(180deg, #119d94 0%, #0d8c84 48%, #08766f 100%);
+    --header-bg: rgba(255,255,255,.94);
+    --surface: var(--ui-surface);
+    --surface-strong: var(--ui-surface);
+    --line: var(--ui-border);
+    --line-strong: var(--ui-border-strong);
+    --chip-bg: rgba(255,255,255,.96);
+
+    /* Kompatibilitas halaman login. */
+    --ink: var(--ui-text);
+    --muted: var(--ui-muted);
+    --page-bg: radial-gradient(circle at 12% 8%, rgba(15,157,148,.11), transparent 28%), linear-gradient(180deg, #f7fbfa 0%, #eef8f6 100%);
+    --stage-bg: rgba(255,255,255,.94);
+    --card-bg: rgba(255,255,255,.98);
+    --card-strong: #ffffff;
+    --hero-bg: linear-gradient(145deg, #effaf8 0%, #e6f6f3 100%);
+    --form-bg: linear-gradient(180deg, #ffffff 0%, #fbfdfd 100%);
+    --border-soft: rgba(15,157,148,.16);
+    --theme-chip-bg: #ffffff;
+    --theme-chip-text: #0f827b;
+}
+
+html[data-theme="dark"] {
+    color-scheme: dark;
+    --ui-bg: #071416;
+    --ui-bg-soft: #0b1b1d;
+    --ui-surface: #102326;
+    --ui-surface-soft: #142a2d;
+    --ui-surface-muted: #1b3437;
+    --ui-text: #eefaf8;
+    --ui-text-2: #cadbd8;
+    --ui-muted: #a7bebb;
+    --ui-faint: #839c99;
+    --ui-border: #294246;
+    --ui-border-strong: #365357;
+    --ui-primary: #36cfc2;
+    --ui-primary-hover: #5addd2;
+    --ui-primary-soft: rgba(54,207,194,.13);
+    --ui-shadow: 0 14px 34px rgba(0,0,0,.25);
+    --ui-shadow-sm: 0 7px 20px rgba(0,0,0,.20);
+
+    --app-ink: var(--ui-text);
+    --app-muted: var(--ui-muted);
+    --app-bg: radial-gradient(circle at 10% 0%, rgba(54,207,194,.10), transparent 26%), linear-gradient(180deg, #071416 0%, #0a181a 100%);
+    --sidebar-bg: linear-gradient(180deg, #0b4f4c 0%, #083f3d 48%, #062f30 100%);
+    --header-bg: rgba(11,27,29,.95);
+    --surface: var(--ui-surface);
+    --surface-strong: var(--ui-surface-soft);
+    --line: var(--ui-border);
+    --line-strong: var(--ui-border-strong);
+    --chip-bg: rgba(16,35,38,.96);
+
+    --ink: var(--ui-text);
+    --muted: var(--ui-muted);
+    --page-bg: radial-gradient(circle at 12% 8%, rgba(54,207,194,.10), transparent 28%), linear-gradient(180deg, #071416 0%, #0b1b1d 100%);
+    --stage-bg: rgba(16,35,38,.94);
+    --card-bg: rgba(16,35,38,.98);
+    --card-strong: #142a2d;
+    --hero-bg: linear-gradient(145deg, #0d3535 0%, #0b292b 100%);
+    --form-bg: linear-gradient(180deg, #102326 0%, #0d1f21 100%);
+    --border-soft: rgba(116,235,224,.18);
+    --theme-chip-bg: #142a2d;
+    --theme-chip-text: #73e2d8;
+}
+
+html,
+body {
+    background: var(--app-bg, var(--page-bg)) !important;
+    color: var(--ui-text) !important;
+}
+
+/* Transisi tema: halus tetapi tidak mengubah layout/fungsi. */
+body,
+.app-header,
+.partner-chip,
+.content-card,
+main > div,
+main > section,
+main article,
+main form,
+main table,
+main thead,
+main tbody,
+main tr,
+main td,
+main th,
+main input,
+main select,
+main textarea,
+main button,
+main a,
+.login-stage,
+.hero-side,
+.form-side,
+.field-wrap input,
+.theme-button-ocean {
+    transition-property: background-color, color, border-color, box-shadow, opacity, transform;
+    transition-duration: 180ms;
+    transition-timing-function: ease;
+}
+
+/* ===== Surface / Card ===== */
+html[data-theme="light"] .bg-white,
+html[data-theme="light"] .bg-white\/95,
+html[data-theme="light"] .bg-white\/90,
+html[data-theme="light"] .bg-white\/88,
+html[data-theme="light"] .bg-white\/85,
+html[data-theme="light"] .bg-white\/80,
+html[data-theme="light"] .bg-white\/70,
+html[data-theme="light"] .content-card {
+    background-color: var(--ui-surface) !important;
+}
+html[data-theme="dark"] .bg-white,
+html[data-theme="dark"] .bg-white\/95,
+html[data-theme="dark"] .bg-white\/90,
+html[data-theme="dark"] .bg-white\/88,
+html[data-theme="dark"] .bg-white\/85,
+html[data-theme="dark"] .bg-white\/80,
+html[data-theme="dark"] .bg-white\/70,
+html[data-theme="dark"] .content-card {
+    background-color: var(--ui-surface) !important;
+}
+
+html[data-theme="light"] .bg-slate-50,
+html[data-theme="light"] .bg-gray-50 { background-color: var(--ui-surface-soft) !important; }
+html[data-theme="light"] .bg-slate-100,
+html[data-theme="light"] .bg-gray-100 { background-color: var(--ui-surface-muted) !important; }
+html[data-theme="light"] .bg-slate-200,
+html[data-theme="light"] .bg-gray-200 { background-color: #dce9e7 !important; }
+
+html[data-theme="dark"] .bg-slate-50,
+html[data-theme="dark"] .bg-gray-50 { background-color: var(--ui-surface-soft) !important; }
+html[data-theme="dark"] .bg-slate-100,
+html[data-theme="dark"] .bg-gray-100 { background-color: var(--ui-surface-muted) !important; }
+html[data-theme="dark"] .bg-slate-200,
+html[data-theme="dark"] .bg-gray-200 { background-color: #244043 !important; }
+
+/* ===== Typography: Slate + Gray sama-sama mengikuti tema ===== */
+html[data-theme="light"] .text-slate-950,
+html[data-theme="light"] .text-slate-900,
+html[data-theme="light"] .text-slate-800,
+html[data-theme="light"] .text-gray-950,
+html[data-theme="light"] .text-gray-900,
+html[data-theme="light"] .text-gray-800 { color: var(--ui-text) !important; }
+
+html[data-theme="light"] .text-slate-700,
+html[data-theme="light"] .text-slate-600,
+html[data-theme="light"] .text-gray-700,
+html[data-theme="light"] .text-gray-600 { color: var(--ui-text-2) !important; opacity: 1 !important; }
+
+html[data-theme="light"] .text-slate-500,
+html[data-theme="light"] .text-slate-400,
+html[data-theme="light"] .text-slate-300,
+html[data-theme="light"] .text-gray-500,
+html[data-theme="light"] .text-gray-400,
+html[data-theme="light"] .text-gray-300 { color: var(--ui-muted) !important; }
+
+html[data-theme="dark"] .text-slate-950,
+html[data-theme="dark"] .text-slate-900,
+html[data-theme="dark"] .text-slate-800,
+html[data-theme="dark"] .text-gray-950,
+html[data-theme="dark"] .text-gray-900,
+html[data-theme="dark"] .text-gray-800 { color: var(--ui-text) !important; }
+
+html[data-theme="dark"] .text-slate-700,
+html[data-theme="dark"] .text-slate-600,
+html[data-theme="dark"] .text-gray-700,
+html[data-theme="dark"] .text-gray-600 { color: var(--ui-text-2) !important; opacity: 1 !important; }
+
+html[data-theme="dark"] .text-slate-500,
+html[data-theme="dark"] .text-slate-400,
+html[data-theme="dark"] .text-slate-300,
+html[data-theme="dark"] .text-gray-500,
+html[data-theme="dark"] .text-gray-400,
+html[data-theme="dark"] .text-gray-300 { color: var(--ui-muted) !important; }
+
+/* ===== Border ===== */
+html[data-theme="light"] .border-slate-100,
+html[data-theme="light"] .border-slate-200,
+html[data-theme="light"] .border-gray-100,
+html[data-theme="light"] .border-gray-200 { border-color: var(--ui-border) !important; }
+html[data-theme="light"] .border-slate-300,
+html[data-theme="light"] .border-gray-300 { border-color: var(--ui-border-strong) !important; }
+
+html[data-theme="dark"] .border-slate-100,
+html[data-theme="dark"] .border-slate-200,
+html[data-theme="dark"] .border-gray-100,
+html[data-theme="dark"] .border-gray-200 { border-color: var(--ui-border) !important; }
+html[data-theme="dark"] .border-slate-300,
+html[data-theme="dark"] .border-gray-300 { border-color: var(--ui-border-strong) !important; }
+
+/* ===== Form ===== */
+input:not([type="checkbox"]):not([type="radio"]),
+select,
+textarea {
+    background-color: var(--ui-surface) !important;
+    color: var(--ui-text) !important;
+    border-color: var(--ui-border-strong) !important;
+}
+html[data-theme="dark"] input:not([type="checkbox"]):not([type="radio"]),
+html[data-theme="dark"] select,
+html[data-theme="dark"] textarea {
+    background-color: var(--ui-surface-soft) !important;
+}
+input::placeholder,
+textarea::placeholder { color: var(--ui-faint) !important; opacity: 1 !important; }
+select option { background: var(--ui-surface); color: var(--ui-text); }
+input:disabled,
+select:disabled,
+textarea:disabled {
+    background-color: var(--ui-surface-muted) !important;
+    color: var(--ui-muted) !important;
+    opacity: 1 !important;
+}
+
+/* ===== Primary identity ===== */
+.bg-primary { background-color: var(--ui-primary) !important; color: #ffffff !important; }
+.bg-primaryDark { background-color: var(--ui-primary-hover) !important; color: #ffffff !important; }
+.text-primary { color: var(--ui-primary) !important; }
+.border-primary { border-color: var(--ui-primary) !important; }
+.bg-primarySoft { background-color: var(--ui-primary-soft) !important; color: var(--ui-text) !important; }
+.hover\:bg-primaryDark:hover { background-color: var(--ui-primary-hover) !important; color: #ffffff !important; }
+.hover\:bg-primary:hover { background-color: var(--ui-primary-hover) !important; color: #ffffff !important; }
+.hover\:bg-primarySoft:hover { background-color: var(--ui-primary-soft) !important; color: var(--ui-text) !important; }
+.hover\:text-primary:hover { color: var(--ui-primary) !important; }
+.focus\:border-primary:focus { border-color: var(--ui-primary) !important; }
+.focus\:ring-primary:focus { --tw-ring-color: color-mix(in srgb, var(--ui-primary) 30%, transparent) !important; }
+.accent-primary { accent-color: var(--ui-primary) !important; }
+
+/* Tailwind warna identitas lama tetap konsisten dengan teal. */
+.text-reef { color: var(--ui-primary) !important; }
+.bg-reef { background-color: var(--ui-primary) !important; color: #fff !important; }
+.text-sea { color: #12a79f !important; }
+.bg-sea { background-color: #20b8ae !important; color: #fff !important; }
+.bg-sea\/10, .bg-sea\/12, .bg-sea\/15 { background-color: rgba(32,184,174,.12) !important; }
+.hover\:bg-sea\/10:hover, .hover\:bg-sea\/15:hover { background-color: rgba(32,184,174,.18) !important; }
+
+html[data-theme="dark"] .text-reef,
+html[data-theme="dark"] .text-sea { color: #69e0d5 !important; }
+html[data-theme="dark"] .bg-sea\/10,
+html[data-theme="dark"] .bg-sea\/12,
+html[data-theme="dark"] .bg-sea\/15 { background-color: rgba(54,207,194,.13) !important; }
+
+/* ===== Hover neutral ===== */
+html[data-theme="light"] .hover\:bg-slate-50:hover,
+html[data-theme="light"] .hover\:bg-gray-50:hover { background-color: #f0f7f6 !important; }
+html[data-theme="light"] .hover\:bg-slate-100:hover,
+html[data-theme="light"] .hover\:bg-gray-100:hover { background-color: #e7f1ef !important; }
+html[data-theme="light"] .hover\:bg-slate-200:hover,
+html[data-theme="light"] .hover\:bg-gray-200:hover { background-color: #d8e8e5 !important; }
+html[data-theme="dark"] .hover\:bg-slate-50:hover,
+html[data-theme="dark"] .hover\:bg-gray-50:hover,
+html[data-theme="dark"] .hover\:bg-slate-100:hover,
+html[data-theme="dark"] .hover\:bg-gray-100:hover,
+html[data-theme="dark"] .hover\:bg-slate-200:hover,
+html[data-theme="dark"] .hover\:bg-gray-200:hover { background-color: #1d393c !important; }
+
+html[data-theme="dark"] .hover\:text-slate-600:hover,
+html[data-theme="dark"] .hover\:text-gray-600:hover { color: var(--ui-text) !important; }
+
+/* ===== Semantic palettes ===== */
+/* Light mempertahankan nuansa ringan, dengan kontras lebih tegas. */
+html[data-theme="light"] .bg-blue-50 { background-color: #eff6ff !important; }
+html[data-theme="light"] .text-blue-700, html[data-theme="light"] .text-blue-600 { color: #1d4ed8 !important; }
+html[data-theme="light"] .border-blue-100, html[data-theme="light"] .border-blue-200 { border-color: #bfdbfe !important; }
+
+html[data-theme="light"] .bg-green-50, html[data-theme="light"] .bg-emerald-50 { background-color: #ecfdf5 !important; }
+html[data-theme="light"] .text-green-700, html[data-theme="light"] .text-green-600,
+html[data-theme="light"] .text-emerald-700, html[data-theme="light"] .text-emerald-600 { color: #047857 !important; }
+html[data-theme="light"] .border-green-100, html[data-theme="light"] .border-green-200,
+html[data-theme="light"] .border-emerald-100, html[data-theme="light"] .border-emerald-200 { border-color: #a7f3d0 !important; }
+
+html[data-theme="light"] .bg-red-50 { background-color: #fff1f2 !important; }
+html[data-theme="light"] .text-red-700, html[data-theme="light"] .text-red-600, html[data-theme="light"] .text-red-500 { color: #be123c !important; }
+html[data-theme="light"] .border-red-100, html[data-theme="light"] .border-red-200 { border-color: #fecdd3 !important; }
+
+html[data-theme="light"] .bg-yellow-50, html[data-theme="light"] .bg-amber-50, html[data-theme="light"] .bg-amber-50\/80 { background-color: #fffbeb !important; }
+html[data-theme="light"] .text-yellow-800, html[data-theme="light"] .text-yellow-700, html[data-theme="light"] .text-yellow-600,
+html[data-theme="light"] .text-amber-800, html[data-theme="light"] .text-amber-700 { color: #92400e !important; }
+html[data-theme="light"] .border-yellow-100, html[data-theme="light"] .border-yellow-200,
+html[data-theme="light"] .border-amber-100, html[data-theme="light"] .border-amber-200, html[data-theme="light"] .border-amber-400 { border-color: #fde68a !important; }
+
+html[data-theme="light"] .bg-cyan-50, html[data-theme="light"] .bg-teal-50 { background-color: #ecfeff !important; }
+html[data-theme="light"] .text-cyan-700, html[data-theme="light"] .text-teal-700, html[data-theme="light"] .text-teal-500 { color: #0f766e !important; }
+html[data-theme="light"] .border-cyan-100, html[data-theme="light"] .border-teal-100 { border-color: #99f6e4 !important; }
+
+html[data-theme="light"] .bg-orange-50 { background-color: #fff7ed !important; }
+html[data-theme="light"] .text-orange-700, html[data-theme="light"] .text-orange-600 { color: #c2410c !important; }
+html[data-theme="light"] .border-orange-100, html[data-theme="light"] .border-orange-200 { border-color: #fed7aa !important; }
+
+html[data-theme="light"] .bg-lime-50 { background-color: #f7fee7 !important; }
+html[data-theme="light"] .text-lime-700 { color: #4d7c0f !important; }
+
+/* Dark: warna status jadi tint gelap + teks terang, bukan background putih. */
+html[data-theme="dark"] .bg-blue-50 { background-color: rgba(59,130,246,.13) !important; }
+html[data-theme="dark"] .text-blue-700, html[data-theme="dark"] .text-blue-600, html[data-theme="dark"] .text-blue-400 { color: #93c5fd !important; }
+html[data-theme="dark"] .border-blue-100, html[data-theme="dark"] .border-blue-200, html[data-theme="dark"] .border-blue-400 { border-color: rgba(147,197,253,.28) !important; }
+
+html[data-theme="dark"] .bg-green-50, html[data-theme="dark"] .bg-green-100,
+html[data-theme="dark"] .bg-emerald-50 { background-color: rgba(16,185,129,.13) !important; }
+html[data-theme="dark"] .text-green-700, html[data-theme="dark"] .text-green-600, html[data-theme="dark"] .text-green-500,
+html[data-theme="dark"] .text-emerald-700, html[data-theme="dark"] .text-emerald-600 { color: #86efac !important; }
+html[data-theme="dark"] .border-green-100, html[data-theme="dark"] .border-green-200, html[data-theme="dark"] .border-green-300,
+html[data-theme="dark"] .border-emerald-100, html[data-theme="dark"] .border-emerald-200 { border-color: rgba(134,239,172,.27) !important; }
+
+html[data-theme="dark"] .bg-red-50, html[data-theme="dark"] .bg-red-100 { background-color: rgba(244,63,94,.13) !important; }
+html[data-theme="dark"] .text-red-700, html[data-theme="dark"] .text-red-600, html[data-theme="dark"] .text-red-500 { color: #fda4af !important; }
+html[data-theme="dark"] .border-red-100, html[data-theme="dark"] .border-red-200, html[data-theme="dark"] .border-red-300, html[data-theme="dark"] .border-red-400 { border-color: rgba(253,164,175,.28) !important; }
+
+html[data-theme="dark"] .bg-yellow-50, html[data-theme="dark"] .bg-amber-50, html[data-theme="dark"] .bg-amber-50\/80 { background-color: rgba(245,158,11,.13) !important; }
+html[data-theme="dark"] .text-yellow-800, html[data-theme="dark"] .text-yellow-700, html[data-theme="dark"] .text-yellow-600, html[data-theme="dark"] .text-yellow-500,
+html[data-theme="dark"] .text-amber-800, html[data-theme="dark"] .text-amber-700 { color: #fcd34d !important; }
+html[data-theme="dark"] .border-yellow-100, html[data-theme="dark"] .border-yellow-200,
+html[data-theme="dark"] .border-amber-100, html[data-theme="dark"] .border-amber-200, html[data-theme="dark"] .border-amber-400 { border-color: rgba(252,211,77,.28) !important; }
+
+html[data-theme="dark"] .bg-cyan-50, html[data-theme="dark"] .bg-teal-50 { background-color: rgba(20,184,166,.13) !important; }
+html[data-theme="dark"] .text-cyan-700, html[data-theme="dark"] .text-teal-700, html[data-theme="dark"] .text-teal-500 { color: #5eead4 !important; }
+html[data-theme="dark"] .border-cyan-100, html[data-theme="dark"] .border-teal-100 { border-color: rgba(94,234,212,.27) !important; }
+
+html[data-theme="dark"] .bg-orange-50 { background-color: rgba(249,115,22,.13) !important; }
+html[data-theme="dark"] .text-orange-700, html[data-theme="dark"] .text-orange-600 { color: #fdba74 !important; }
+html[data-theme="dark"] .border-orange-100, html[data-theme="dark"] .border-orange-200 { border-color: rgba(253,186,116,.28) !important; }
+
+html[data-theme="dark"] .bg-lime-50 { background-color: rgba(132,204,22,.13) !important; }
+html[data-theme="dark"] .text-lime-700 { color: #bef264 !important; }
+
+/* Tombol solid harus selalu punya teks putih dan tetap terlihat di kedua mode. */
+.bg-blue-600, .bg-green-600, .bg-emerald-600, .bg-red-600, .bg-red-500,
+.bg-teal-600, .bg-indigo-500, .bg-amber-500, .bg-green-500, .bg-yellow-400 {
+    color: #ffffff !important;
+}
+html[data-theme="dark"] .bg-yellow-400 { color: #172c2b !important; }
+.hover\:bg-blue-700:hover, .hover\:bg-green-600:hover, .hover\:bg-red-700:hover,
+.hover\:bg-teal-700:hover { color: #ffffff !important; }
+
+/* Hover semantic di dark tidak boleh berubah menjadi background pastel terang. */
+html[data-theme="dark"] .hover\:bg-blue-50:hover,
+html[data-theme="dark"] .hover\:bg-blue-100:hover { background-color: rgba(59,130,246,.20) !important; }
+html[data-theme="dark"] .hover\:bg-green-100:hover { background-color: rgba(16,185,129,.20) !important; }
+html[data-theme="dark"] .hover\:bg-red-50:hover,
+html[data-theme="dark"] .hover\:bg-red-100:hover { background-color: rgba(244,63,94,.20) !important; }
+html[data-theme="dark"] .hover\:bg-amber-100:hover { background-color: rgba(245,158,11,.20) !important; }
+html[data-theme="dark"] .hover\:bg-cyan-50\/45:hover { background-color: rgba(20,184,166,.12) !important; }
+
+/* ===== Gradient dashboard yang tadinya putih diperbaiki saat dark mode ===== */
+html[data-theme="dark"] .from-white {
+    --tw-gradient-from: #102326 var(--tw-gradient-from-position) !important;
+    --tw-gradient-to: rgb(16 35 38 / 0) var(--tw-gradient-to-position) !important;
+}
+html[data-theme="dark"] .via-cyan-50 {
+    --tw-gradient-to: rgb(17 52 54 / 0) var(--tw-gradient-to-position) !important;
+    --tw-gradient-stops: var(--tw-gradient-from), #113436 var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+}
+html[data-theme="dark"] .to-emerald-50 {
+    --tw-gradient-to: #12302f var(--tw-gradient-to-position) !important;
+}
+
+
+/* ===== Profile hero: mengikuti identitas teal SIMADA, bukan biru ===== */
+.simada-profile-hero {
+    background:
+        radial-gradient(circle at 88% 15%, rgba(255,255,255,.14), transparent 26%),
+        linear-gradient(115deg, #0f9d94 0%, #159f98 48%, #28aaa3 100%) !important;
+    border: 1px solid rgba(15,157,148,.10);
+    box-shadow: 0 16px 36px rgba(15, 75, 70, .12) !important;
+}
+.simada-profile-hero-muted {
+    color: rgba(255,255,255,.84) !important;
+}
+.simada-profile-hero h2,
+.simada-profile-hero .text-white {
+    color: #ffffff !important;
+}
+.simada-role-chip {
+    background: var(--ui-primary-soft) !important;
+    color: var(--ui-primary) !important;
+    border: 1px solid rgba(15,157,148,.18) !important;
+}
+html[data-theme="dark"] .simada-profile-hero {
+    background:
+        radial-gradient(circle at 88% 15%, rgba(116,235,224,.10), transparent 28%),
+        linear-gradient(115deg, #0b3d3d 0%, #0d5350 50%, #0f6a64 100%) !important;
+    border-color: rgba(116,235,224,.14) !important;
+    box-shadow: 0 18px 42px rgba(0,0,0,.24) !important;
+}
+html[data-theme="dark"] .simada-role-chip {
+    background: rgba(54,207,194,.13) !important;
+    color: #73e2d8 !important;
+    border-color: rgba(116,235,224,.22) !important;
+}
+
+/* Gradient profil tetap kuat dan teks putih tetap jelas. */
+html[data-theme="dark"] .from-blue-900 { --tw-gradient-from: #103b42 var(--tw-gradient-from-position) !important; --tw-gradient-to: rgb(16 59 66 / 0) var(--tw-gradient-to-position) !important; }
+html[data-theme="dark"] .via-blue-800 { --tw-gradient-to: rgb(14 77 78 / 0) var(--tw-gradient-to-position) !important; --tw-gradient-stops: var(--tw-gradient-from), #0e4d4e var(--tw-gradient-via-position), var(--tw-gradient-to) !important; }
+html[data-theme="dark"] .to-cyan-700 { --tw-gradient-to: #0f766e var(--tw-gradient-to-position) !important; }
+
+/* ===== Header / controls ===== */
+.app-header {
+    background: var(--header-bg) !important;
+    border-color: var(--ui-border) !important;
+    box-shadow: var(--ui-shadow-sm) !important;
+}
+.partner-chip {
+    background: var(--ui-surface) !important;
+    border-color: var(--ui-border) !important;
+    box-shadow: var(--ui-shadow-sm) !important;
+}
+.theme-button-ocean {
+    background: var(--ui-surface) !important;
+    border-color: var(--ui-border) !important;
+    color: var(--ui-primary) !important;
+    box-shadow: var(--ui-shadow-sm) !important;
+}
+.theme-button-ocean:hover {
+    background: var(--ui-primary-soft) !important;
+    color: var(--ui-primary) !important;
+}
+
+/* ===== Tables ===== */
+main table { color: var(--ui-text) !important; }
+main thead,
+main thead.bg-slate-50,
+main thead.bg-gray-50 { background-color: var(--ui-surface-soft) !important; color: var(--ui-text-2) !important; }
+main tbody { color: var(--ui-text) !important; }
+main tbody tr { border-color: var(--ui-border) !important; }
+html[data-theme="dark"] main tbody tr:hover { background-color: rgba(54,207,194,.055) !important; }
+html[data-theme="light"] main tbody tr:hover { background-color: rgba(15,157,148,.035) !important; }
+
+/* ===== Modal ===== */
+html[data-theme="dark"] .bg-black\/40 { background-color: rgba(0,0,0,.62) !important; }
+html[data-theme="light"] .bg-black\/40 { background-color: rgba(15,23,42,.38) !important; }
+
+/* ===== Sidebar tetap punya kontras sendiri ===== */
+.sidebar { background: var(--sidebar-bg) !important; }
+.sidebar .text-white,
+.sidebar .text-white\/80,
+.sidebar .text-white\/70 { color: #ffffff !important; }
+.sidebar .bg-white\/10,
+.sidebar .bg-white\/12,
+.sidebar .bg-white\/\[\.045\] { background-color: rgba(255,255,255,.10) !important; }
+.sidebar .hover\:bg-white\/10:hover { background-color: rgba(255,255,255,.14) !important; }
+.sidebar a.bg-white { background-color: #ffffff !important; color: #0b7f79 !important; }
+.sidebar a.bg-white i, .sidebar a.bg-white span { color: #0b7f79 !important; }
+
+/* ===== Login: jangan ada kombinasi teks/background yang tertukar ===== */
+.login-stage { background: var(--stage-bg) !important; border-color: var(--border-soft) !important; }
+.hero-side { background: var(--hero-bg) !important; }
+.form-side { background: var(--form-bg) !important; }
+.partner-card { background: var(--card-bg) !important; border-color: var(--border-soft) !important; }
+.field-wrap input { background: var(--card-strong) !important; color: var(--ink) !important; }
+html[data-theme="dark"] .bg-foam { background-color: var(--ui-surface-soft) !important; }
+html[data-theme="light"] .bg-foam { background-color: #f7fbfa !important; }
+
+/* Pada card warna solid, jangan ditimpa mapping teks tema. */
+.bg-primary .text-white,
+.bg-primaryDark .text-white,
+.bg-blue-600 .text-white,
+.bg-green-600 .text-white,
+.bg-emerald-600 .text-white,
+.bg-red-600 .text-white,
+.bg-red-500 .text-white,
+.bg-teal-600 .text-white,
+.bg-indigo-500 .text-white,
+.bg-reef .text-white,
+.bg-sea .text-white { color: #ffffff !important; }
+
+/* Disabled tetap terbaca. */
+button:disabled,
+.cursor-not-allowed { opacity: .72 !important; }
+
+/* Fokus keyboard terlihat jelas. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--ui-primary) 36%, transparent) !important;
+    outline-offset: 2px;
+}
+
+/* Motion accessibility. */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

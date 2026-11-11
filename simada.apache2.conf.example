@@ -1,0 +1,12 @@
+<VirtualHost *:80>
+    ServerName simada-server
+    DocumentRoot /var/www/simada
+
+    <Directory /var/www/simada>
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/simada_error.log
+    CustomLog ${APACHE_LOG_DIR}/simada_access.log combined
+</VirtualHost>

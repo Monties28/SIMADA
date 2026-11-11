@@ -1,0 +1,29 @@
+SIMADA - MULAI DI WINDOWS/XAMPP
+===============================
+
+1. Install XAMPP yang memakai PHP 8.x.
+2. Extract folder "simada" ke:
+   C:\xampp\htdocs\simada
+3. Buka XAMPP Control Panel.
+4. Start: Apache dan MySQL.
+5. Buka browser:
+   http://localhost/phpmyadmin
+6. Buat database bernama:
+   simada
+7. Pilih database simada -> Import -> pilih:
+   C:\xampp\htdocs\simada\database\install_windows_xampp.sql
+8. Setelah import selesai, cek instalasi:
+   http://localhost/simada/setup_check.php
+9. Kalau semua utama OK, buka:
+   http://localhost/simada/
+10. Login awal:
+    Username: admin
+    Password: admin123
+11. Setelah berhasil login, ganti password admin.
+
+CATATAN:
+- File .env sudah disiapkan untuk XAMPP lokal.
+- Database default XAMPP diasumsikan root tanpa password.
+- Storage lokal: C:\xampp\htdocs\simada\storage_simada
+- Fitur ekstraksi teks PDF (pdftotext) bersifat opsional di Windows.
+- Internet diperlukan agar Tailwind CDN dan Font Awesome pada tampilan dapat termuat sempurna.

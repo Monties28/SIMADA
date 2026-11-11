@@ -1,0 +1,52 @@
+SIMADA - SATU CODEBASE WINDOWS/XAMPP + UBUNTU SERVER
+===================================================
+
+Project ini sudah disesuaikan agar fungsi yang bergantung pada OS mendeteksi Windows atau Linux secara otomatis.
+
+Yang tetap sama:
+- Login/session/role admin-user
+- Database dan struktur query utama
+- Upload/download dokumen
+- Smart OCR PDF
+- Notifikasi
+- Preview PDF
+- UI/theme
+- Manajemen user/dokumen
+
+Yang dibuat lintas platform:
+1. OCR executable:
+   Windows -> PATH/.env (pdftotext.exe, pdftoppm.exe, tesseract.exe)
+   Ubuntu  -> /usr/bin atau command -v (pdftotext, pdftoppm, tesseract)
+
+2. Preview Word/Excel:
+   Windows -> LibreOffice Desktop/soffice.exe
+   Ubuntu  -> LibreOffice headless (/usr/bin/libreoffice atau /usr/bin/soffice)
+   Konversi memakai profil sementara agar user Apache www-data tidak membutuhkan desktop/session GUI.
+
+3. Storage:
+   Windows -> storage_simada (default lokal)
+   Ubuntu  -> disarankan SIMADA_STORAGE_PATH=/srv/documents
+
+4. setup_check.php:
+   Mendeteksi OS, storage, DB, OCR, bahasa ind+eng, dan LibreOffice.
+
+FILE KONFIGURASI UBUNTU
+-----------------------
+Gunakan .env.ubuntu.example sebagai template:
+
+  cp .env.ubuntu.example .env
+
+Kemudian isi DB_PASSWORD, APP_URL, dan APP_MASTER_KEY.
+Jika migrasi dari instalasi lama, pertahankan APP_MASTER_KEY yang lama.
+
+DEPENDENCY UBUNTU
+-----------------
+Bisa menjalankan:
+
+  bash ubuntu_install_dependencies.sh
+
+atau ikuti README_UBUNTU_SERVER.md.
+
+PENTING
+-------
+File .env tetap bersifat environment-specific. Codebase sama, tetapi .env Windows dan Ubuntu memang harus berbeda untuk database, URL, storage, dan path executable.

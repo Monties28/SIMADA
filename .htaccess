@@ -1,0 +1,19 @@
+Options -Indexes
+
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "DENY"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set X-Permitted-Cross-Domain-Policies "none"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+</IfModule>
+
+<FilesMatch "(^\.|\.env$|\.ini$|\.log$|\.bak$|\.backup$|\.sql$|composer\.(json|lock)$)">
+    Require all denied
+</FilesMatch>
+
+<IfModule !mod_authz_core.c>
+    <FilesMatch "(^\.|\.env$|\.ini$|\.log$|\.bak$|\.backup$|\.sql$|composer\.(json|lock)$)">
+        Deny from all
+    </FilesMatch>
+</IfModule>

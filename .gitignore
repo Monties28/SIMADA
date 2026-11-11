@@ -1,0 +1,28 @@
+# Secrets and local environment
+.env
+.env.local
+.env.*.local
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs and temp files
+*.log
+*.tmp
+*.temp
+
+# Local database/runtime artifacts
+data.db
+*.sqlite
+*.sqlite3
+
+# Uploaded files and generated storage content
+storage_simada/
+
+# Cache folders
+cache/
+tmp/
+temp/
